@@ -8,6 +8,7 @@ import (
 	"github.com/dangquang9a/LearningGo/api/models"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 type Server struct {

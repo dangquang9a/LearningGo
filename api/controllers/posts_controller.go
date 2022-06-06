@@ -135,7 +135,7 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 
 	//Also check if the request user id is equal to the one gotten from token
 	if uid != postUpdate.AuthorID {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("PostID mismatch, you do not own this post"))
+		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
 		return
 	}
 

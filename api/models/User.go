@@ -93,7 +93,7 @@ func (u *User) Validate(action string) error {
 			return errors.New("email is required")
 		}
 		if err := checkmail.ValidateFormat(u.Email); err != nil {
-			return errors.New("nvalid Email")
+			return errors.New("invalid Email")
 		}
 		return nil
 	}

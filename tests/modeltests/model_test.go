@@ -5,9 +5,11 @@ import (
 	"log"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/dangquang9a/LearningGo/api/controllers"
 	"github.com/dangquang9a/LearningGo/api/models"
+	"github.com/dangquang9a/LearningGo/api/utils/randomizer"
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
 )
@@ -21,6 +23,7 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		log.Fatalf("Error getting env %v\n", err)
 	}
+	Database()
 
 	os.Exit(m.Run())
 }
@@ -60,9 +63,11 @@ func seedOneUser() (models.User, error) {
 	refreshUserTable()
 
 	user := models.User{
-		Nickname: "Pet",
-		Email:    "pet@gmail.com",
-		Password: "password",
+		Nickname:  randomizer.GenerateName(),
+		Email:     randomizer.GenerateEmail(),
+		Password:  "password",
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
 	}
 
 	err := server.DB.Model(&models.User{}).Create(&user).Error
@@ -76,8 +81,8 @@ func seedUsers() error {
 
 	users := []models.User{
 		{
-			Nickname: "Steven victor",
-			Email:    "steven@gmail.com",
+			Nickname: randomizer.GenerateName(),
+			Email:    randomizer.GenerateEmail(),
 			Password: "password",
 		},
 		{
@@ -87,7 +92,7 @@ func seedUsers() error {
 		},
 	}
 
-	for i, _ := range users {
+	for i := range users {
 		err := server.DB.Model(&models.User{}).Create(&users[i]).Error
 		if err != nil {
 			return err
@@ -117,8 +122,8 @@ func seedOneUserAndOnePost() (models.Post, error) {
 		return models.Post{}, err
 	}
 	user := models.User{
-		Nickname: "Sam Phil",
-		Email:    "sam@gmail.com",
+		Nickname: randomizer.GenerateName(),
+		Email:    randomizer.GenerateEmail(),
 		Password: "password",
 	}
 	err = server.DB.Model(&models.User{}).Create(&user).Error
@@ -146,13 +151,13 @@ func seedUsersAndPosts() ([]models.User, []models.Post, error) {
 	}
 	var users = []models.User{
 		{
-			Nickname: "Steven victor",
-			Email:    "steven@gmail.com",
+			Nickname: randomizer.GenerateName(),
+			Email:    randomizer.GenerateEmail(),
 			Password: "password",
 		},
 		{
 			Nickname: "Magu Frank",
-			Email:    "magu@gmail.com",
+			Email:    "magu_frank@gmail.com",
 			Password: "password",
 		},
 	}
@@ -167,7 +172,7 @@ func seedUsersAndPosts() ([]models.User, []models.Post, error) {
 		},
 	}
 
-	for i, _ := range users {
+	for i := range users {
 		err = server.DB.Model(&models.User{}).Create(&users[i]).Error
 		if err != nil {
 			log.Fatalf("cannot seed users table: %v", err)

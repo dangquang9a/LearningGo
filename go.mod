@@ -2,6 +2,8 @@ module github.com/dangquang9a/LearningGo
 
 go 1.18
 
+require golang.org/x/text v0.3.7
+
 require (
 	github.com/badoux/checkmail v1.2.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect

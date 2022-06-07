@@ -9,6 +9,7 @@ import (
 	"github.com/dangquang9a/LearningGo/api/controllers"
 	"github.com/dangquang9a/LearningGo/api/models"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/joho/godotenv"
 )
 

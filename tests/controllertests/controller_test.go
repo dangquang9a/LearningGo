@@ -13,8 +13,6 @@ import (
 )
 
 var server = controllers.Server{}
-var userInstance = models.User{}
-var postInstance = models.Post{}
 
 func TestMain(m *testing.M) {
 
